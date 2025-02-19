@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "urban_os_id": "URBANID123456789",
+        "attribute_id": 1,
+        "attribute_value": "30"
+    },
+    {
+        "id": 2,
+        "urban_os_id": "URBANID123456789",
+        "attribute_id": 2,
+        "attribute_value": "女"
+    },
+    {
+        "id": 3,
+        "urban_os_id": "URBANID123456789",
+        "attribute_id": 3,
+        "attribute_value": "野嵩"
+    },
+    {
+        "id": 4,
+        "urban_os_id": "URBANID123456789",
+        "attribute_id": 4,
+        "attribute_value": "中"
+    }
+]

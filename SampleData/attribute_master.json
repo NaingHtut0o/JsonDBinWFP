@@ -1,0 +1,30 @@
+[
+  {
+    "AttributeId": "01",
+    "AttributeName": "年代"
+  },
+  {
+    "AttributeId": "02",
+    "AttributeName": "性別"
+  },
+  {
+    "AttributeId": "03",
+    "AttributeName": "地域"
+  },
+  {
+    "AttributeId": "04",
+    "AttributeName": "所得水準"
+  },
+  {
+    "AttributeId": "05",
+    "AttributeName": "GHI"
+  },
+  {
+    "AttributeId": "06",
+    "AttributeName": "DEFUVW"
+  },
+  {
+    "AttributeId": "07",
+    "AttributeName": "ABCXYZ"
+  }
+]

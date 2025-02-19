@@ -1,0 +1,17 @@
+﻿[
+    {
+        "item_id": 1,
+        "item_name": "身長",
+        "unit": "cm"
+    },
+    {
+        "item_id": 2,
+        "item_name": "体重",
+        "unit": "Kg"
+    },
+    {
+        "item_id": 1,
+        "item_name": "コレステロール",
+        "unit": "mg/dL"
+    }
+]
