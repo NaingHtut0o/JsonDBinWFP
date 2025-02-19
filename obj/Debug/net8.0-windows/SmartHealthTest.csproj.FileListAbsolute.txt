@@ -22,3 +22,8 @@ D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\SmartHealthTest
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\SmartHealthTest.genruntimeconfig.cache
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\ref\SmartHealthTest.dll
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\App.baml
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\AttributePage.g.cs
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\AttributePage.baml
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\SmartHealthTest.sourcelink.json
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage.g.cs
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage.baml

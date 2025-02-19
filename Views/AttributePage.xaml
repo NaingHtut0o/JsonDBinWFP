@@ -1,0 +1,107 @@
+﻿<Page x:Class="SmartHealthTest.Views.AttributePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmartHealthTest"
+        mc:Ignorable="d"
+        Title="属性マスタ" Height="Auto" Width="Auto" Background="LightYellow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="属性マスタ" FontSize="22" FontWeight="Bold" Margin="10" Foreground="DarkOrange"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Margin="80,10,50,0" Height="30" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="属性ID" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="75"/>
+                <TextBox Grid.Column="1" Width="430" FontSize="16" VerticalContentAlignment="Center" x:Name="searchID" Margin="0 0 5 0"/>
+                <Button Grid.Column="2" Width="60" Content="検索" FontSize="16" Margin="0 0 5 0" Click="Search"/>
+                <Button Grid.Column="3" Width="60" Background="White" Foreground="DarkOrange" Content="クリア" FontSize="16"  Margin="0 0 5 0" Click="Clear"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="80,10,50,0" Height="30" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="属性名" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="75"/>
+                <TextBox Grid.Column="1" Width="430" FontSize="16" VerticalContentAlignment="Center" x:Name="newName" Margin="0 0 5 0"/>
+            </Grid>
+        </Grid>
+
+        <DataGrid x:Name="dgAttributes" Grid.Row="2" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="True" CanUserSortColumns="True" LoadingRow="dgAttributes_LoadingRow" RowHeaderWidth="0" ColumnHeaderHeight="30" RowHeight="25" FontSize="16">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="DarkOrange"/>
+                    <!-- Header Background Color -->
+                    <Setter Property="Foreground" Value="White"/>
+                    <!-- Header Text Color -->
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightBlue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" ID" Binding="{Binding AttributeId}" Width="2*"/>
+                <DataGridTextColumn Header=" 属性名" Binding="{Binding AttributeName}" Width="6*"/>
+                <DataGridTemplateColumn Header=" 活動" Width="2*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ConfirmDelete" Tag="{Binding}" Background="Transparent" BorderThickness="0" Width="16">
+                                <Image Source="D:\Work\SmartHealthTest\SmartHealthTest\Images\bin.png" Width="16" Height="16"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid x:Name="NoDataGrid" Grid.Row="2" Margin="80, 10, 50, 0"  Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="DarkOrange">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="6*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="ID" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="属性名" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="活動" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <TextBlock Background="LightYellow" FontSize="24" FontWeight="Bold" Text="データ 無し" Foreground="Red" HorizontalAlignment="Center"/>
+            </Grid>
+        </Grid>
+
+        <Button Grid.Row="3" Content="登録" Width="100" Height="30" HorizontalAlignment="Right" Margin="0, 10, 50, 50" FontSize="16" Click="Update"/>
+    </Grid>
+</Page>
