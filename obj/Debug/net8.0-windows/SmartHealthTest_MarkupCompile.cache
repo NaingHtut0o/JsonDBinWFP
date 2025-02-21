@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 D:\Work\SmartHealthTest\SmartHealthTest\App.xaml
-3-1923549424
+4-1014443714
 
-171636706428
+18-1271193200
 199-951095569
-MainWindow.xaml;Views\AttributePage.xaml;Views\BlankPage.xaml;
+MainWindow.xaml;Views\AttributePage.xaml;Views\BlankPage.xaml;Views\RegisterAttributePage.xaml;
 
 False
 

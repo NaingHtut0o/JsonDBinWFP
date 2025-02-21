@@ -1,18 +1,18 @@
 [
     {
-        "company_id": 1,
-        "company_name": "JOTO"
+        "CompanyId": 1,
+        "CompanyName": "JOTO"
     },
     {
-        "company_id": 2,
-        "company_name": "OCC"
+        "CompanyId": 2,
+        "CompanyName": "OCC"
     },
     {
-        "company_id": 3,
-        "company_name": "琉球大学"
+        "CompanyId": 3,
+        "CompanyName": "琉球大学"
     },
     {
-        "company_id": 4,
-        "company_name": "サンエー"
+        "CompanyId": 4,
+        "CompanyName": "サンエー"
     }
 ]

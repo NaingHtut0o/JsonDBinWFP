@@ -27,3 +27,5 @@ D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\Attribute
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\SmartHealthTest.sourcelink.json
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage.g.cs
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage.baml
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\RegisterAttributePage.g.cs
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\RegisterAttributePage.baml

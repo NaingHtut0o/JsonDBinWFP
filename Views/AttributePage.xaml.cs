@@ -16,7 +16,6 @@ namespace SmartHealthTest.Views
     public partial class AttributePage : Page
     {
         private JsonDatabase<AttributeMasterModel> _attributeDatabase;
-        public ICommand Register;
         public ObservableCollection<AttributeMasterModel> AttributeData;
         public AttributePage()
         {
@@ -76,10 +75,17 @@ namespace SmartHealthTest.Views
 
         private void Search(object sender, RoutedEventArgs e)
         {
-            List<AttributeMasterModel> attributeMasterModels = _attributeDatabase.GetAll();
-            AttributeMasterModel attModel = attributeMasterModels.FirstOrDefault(r => r.AttributeId == searchID.Text);
+            List<AttributeMasterModel> attributeMasterModels = new List<AttributeMasterModel>();
+            if (searchID.Text != "" || newName.Text != "")
+            {
+                attributeMasterModels = _attributeDatabase.GetAll();
+                if(searchID.Text != "")
+                    attributeMasterModels = attributeMasterModels.Where(r => r.AttributeId == searchID.Text).ToList();
+                if(newName.Text != "")
+                    attributeMasterModels = attributeMasterModels.Where(r => r.AttributeName.Contains(newName.Text)).ToList();
+            }
             AttributeData.Clear();
-            if (attModel != null)
+            foreach(var attModel in attributeMasterModels)
                 AttributeData.Add(attModel);
             dgAttributes.Items.Refresh();
             CheckIfNoData();
@@ -88,6 +94,7 @@ namespace SmartHealthTest.Views
         private void Clear(object sender, RoutedEventArgs e)
         {
             searchID.Text = string.Empty;
+            newName.Text = string.Empty;
             List<AttributeMasterModel> attributeMasterModels = _attributeDatabase.GetAll();
             AttributeData.Clear();
             foreach (var item in attributeMasterModels)

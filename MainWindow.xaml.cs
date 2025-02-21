@@ -28,9 +28,16 @@ namespace SmartHealthTest
             //MainFrame.Navigate(new AttributePage()); // Load HomePage by default
         }
 
-        private void NavigateHome(object sender, RoutedEventArgs e)
+        private void NavigateAttribute(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new AttributePage());
+        }
+
+        private void NavigateRegisterAttribute(object sender, RoutedEventArgs e)
+        {
+            RegisterAttributePage page = new RegisterAttributePage();
+            page.DataContext = page;
+            MainFrame.Navigate(page);
         }
 
         private void NavigateBlank(object sender, RoutedEventArgs e)
