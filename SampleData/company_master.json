@@ -1,18 +1,42 @@
 [
-    {
-        "CompanyId": 1,
-        "CompanyName": "JOTO"
-    },
-    {
-        "CompanyId": 2,
-        "CompanyName": "OCC"
-    },
-    {
-        "CompanyId": 3,
-        "CompanyName": "琉球大学"
-    },
-    {
-        "CompanyId": 4,
-        "CompanyName": "サンエー"
-    }
+  {
+    "CompanyId": 1,
+    "CompanyName": "JOTO",
+    "DisplayName": "1. JOTO"
+  },
+  {
+    "CompanyId": 2,
+    "CompanyName": "OCC",
+    "DisplayName": "2. OCC"
+  },
+  {
+    "CompanyId": 3,
+    "CompanyName": "琉球大学",
+    "DisplayName": "3. 琉球大学"
+  },
+  {
+    "CompanyId": 4,
+    "CompanyName": "サンエー",
+    "DisplayName": "4. サンエー"
+  },
+  {
+    "CompanyId": 5,
+    "CompanyName": "会社 Z",
+    "DisplayName": "5. 会社 Z"
+  },
+  {
+    "CompanyId": 6,
+    "CompanyName": "有名",
+    "DisplayName": "6. 有名"
+  },
+  {
+    "CompanyId": 7,
+    "CompanyName": "裏 会社",
+    "DisplayName": "7. 裏 会社"
+  },
+  {
+    "CompanyId": 8,
+    "CompanyName": "裏 会社",
+    "DisplayName": "8. 裏 会社"
+  }
 ]

@@ -24,44 +24,44 @@
     "AttributeValue": "中"
   },
   {
-    "Id": 5,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 33,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "01",
-    "AttributeValue": "30"
+    "AttributeValue": "25"
   },
   {
-    "Id": 6,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 34,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "02",
-    "AttributeValue": "女"
+    "AttributeValue": "男"
   },
   {
-    "Id": 7,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 35,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "03",
     "AttributeValue": "野嵩"
   },
   {
-    "Id": 8,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 36,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "04",
-    "AttributeValue": "中"
+    "AttributeValue": "高い"
   },
   {
-    "Id": 9,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 37,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "05",
     "AttributeValue": "何か 属性"
   },
   {
-    "Id": 10,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 38,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "06",
     "AttributeValue": "何か 属性"
   },
   {
-    "Id": 11,
-    "UrbanOsId": "URBANID123456790",
+    "Id": 39,
+    "UrbanOsId": "URBANID234567890",
     "AttributeId": "07",
     "AttributeValue": "何か 属性"
   }

@@ -29,3 +29,7 @@ D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\BlankPage.baml
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\RegisterAttributePage.g.cs
 D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\RegisterAttributePage.baml
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\CompanyPage.g.cs
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\CompanyPage.baml
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\CompanyLinkPage.g.cs
+D:\Work\SmartHealthTest\SmartHealthTest\obj\Debug\net8.0-windows\Views\CompanyLinkPage.baml

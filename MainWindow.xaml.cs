@@ -40,6 +40,16 @@ namespace SmartHealthTest
             MainFrame.Navigate(page);
         }
 
+        private void NavigateCompany(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CompanyPage());
+        }
+
+        private void NavigateCompanyLink(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new CompanyLinkPage());
+        }
+
         private void NavigateBlank(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new BlankPage());

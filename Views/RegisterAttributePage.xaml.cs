@@ -20,6 +20,7 @@ namespace SmartHealthTest.Views
         private JsonDatabase<UrbanOsAttributesModel> _userAttributesDatabase;
         private List<AttributeMasterModel> AttributeData;
         private Dictionary<string, TextBox> textBoxes;
+        private string currentOsId;
 
         public RegisterAttributePage()
         {
@@ -117,6 +118,23 @@ namespace SmartHealthTest.Views
                 _headerGrid.Children.Add(border);
                 i++;
             }
+            _headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) });
+            Border border1 = new Border
+            {
+                BorderThickness = new Thickness(1, 0, 1, 1),
+                BorderBrush = new SolidColorBrush(Colors.White),
+                Child = new TextBlock
+                {
+                    Text = " 活動",
+                    HorizontalAlignment = HorizontalAlignment.Left,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    FontSize = 16,
+                    FontWeight = FontWeights.Bold,
+                    Foreground = new SolidColorBrush(Colors.White),
+                }
+            };
+            Grid.SetColumn(border1, i);
+            _headerGrid.Children.Add(border1);
             NotFound();
         }
 
@@ -143,6 +161,7 @@ namespace SmartHealthTest.Views
             {
                 List<UrbanOsAttributesModel> allOsAttribute = _userAttributesDatabase.GetAll();
                 allOsAttribute = allOsAttribute.Where(r => r.UrbanOsId == searchID.Text).ToList();
+                currentOsId = searchID.Text;
                 if (allOsAttribute.Count > 0)
                     RefreshColumns(allOsAttribute);
                 else
@@ -154,12 +173,7 @@ namespace SmartHealthTest.Views
 
         private void Clear(object sender, RoutedEventArgs e)
         {
-            searchID.Text = string.Empty;
-            foreach(var attribute in AttributeData)
-            {
-                textBoxes[attribute.AttributeId].Text = string.Empty;
-            }
-            NotFound();
+            AllClear();
         }
 
         private void RefreshColumns(List<UrbanOsAttributesModel> RegisterAttribute)
@@ -191,8 +205,30 @@ namespace SmartHealthTest.Views
                 Grid.SetColumn(border, i);
                 _bodyGrid.Children.Add(border);
                 i++;
+                //MessageBox.Show(i.ToString());
                 textBoxes[header.AttributeId].Text = attributeValue;
             }
+            _bodyGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            Button deleteButton = new Button
+            {
+                Content = "\uE74D",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                FontFamily = new FontFamily("Segoe MDL2 Assets"),
+                Foreground = new SolidColorBrush(Colors.DarkOrange),
+                Width = 20,
+                Background = new SolidColorBrush(Colors.Transparent),
+                BorderThickness = new Thickness(0),
+            };
+            deleteButton.Click += ConfirmDelete;
+            Border border1 = new Border
+            {
+                BorderThickness = new Thickness(1, 0, 1, 1),
+                BorderBrush = new SolidColorBrush(Colors.DarkOrange),
+                Child = deleteButton
+            };
+            Grid.SetColumn(border1, i);
+            _bodyGrid.Children.Add(border1);
         }
 
         private void Update(object sender, RoutedEventArgs e)
@@ -204,7 +240,7 @@ namespace SmartHealthTest.Views
             }
             else
             {
-                string urbanOsId = searchID.Text;
+                currentOsId = searchID.Text;
                 List<UrbanOsAttributesModel> updateAttribute = _userAttributesDatabase.GetAll();
                 int maxId = updateAttribute.Max(r => r.Id) + 1;
                 foreach(var attribute in AttributeData)
@@ -212,7 +248,7 @@ namespace SmartHealthTest.Views
                     string attributeId = attribute.AttributeId;
                     string attributeValue = textBoxes[attributeId].Text;
 
-                    UrbanOsAttributesModel currentUrban = updateAttribute.FirstOrDefault(r => r.AttributeId == attributeId && r.UrbanOsId == urbanOsId);
+                    UrbanOsAttributesModel currentUrban = updateAttribute.FirstOrDefault(r => r.AttributeId == attributeId && r.UrbanOsId == currentOsId);
                     if (currentUrban != null)
                         updateAttribute.Remove(currentUrban);
 
@@ -221,7 +257,7 @@ namespace SmartHealthTest.Views
                         Id = maxId,
                         AttributeId = attributeId,
                         AttributeValue = attributeValue,
-                        UrbanOsId = urbanOsId
+                        UrbanOsId = currentOsId
                     };
                     updateAttribute.Add(newUrban);
                     maxId++;
@@ -229,9 +265,39 @@ namespace SmartHealthTest.Views
                 updateAttribute = updateAttribute.OrderBy(r => r.Id).ToList();
                 _userAttributesDatabase.SaveAll(updateAttribute);
 
-                updateAttribute = updateAttribute.Where(r => r.UrbanOsId == urbanOsId).ToList();
+                updateAttribute = updateAttribute.Where(r => r.UrbanOsId == currentOsId).ToList();
                 RefreshColumns(updateAttribute);
             }
+        }
+
+        private void ConfirmDelete(object sender, EventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + currentOsId, "Confirm Delete", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                List<UrbanOsAttributesModel> updateAttribute = _userAttributesDatabase.GetAll();
+                foreach (var attribute in AttributeData)
+                {
+                    string attributeId = attribute.AttributeId;
+
+                    UrbanOsAttributesModel currentUrban = updateAttribute.FirstOrDefault(r => r.AttributeId == attributeId && r.UrbanOsId == currentOsId);
+                    if (currentUrban != null)
+                        updateAttribute.Remove(currentUrban);
+                }
+                updateAttribute = updateAttribute.OrderBy(r => r.Id).ToList();
+                _userAttributesDatabase.SaveAll(updateAttribute);
+                AllClear();
+            }
+        }
+
+        private void AllClear()
+        {
+            searchID.Text = string.Empty;
+            foreach (var attribute in AttributeData)
+            {
+                textBoxes[attribute.AttributeId].Text = string.Empty;
+            }
+            NotFound();
         }
     }
 }

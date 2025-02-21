@@ -26,8 +26,8 @@
             <Button Content="紐づけ処理" Click="NavigateBlank" Grid.Column="0"/>
             <Button Content="属性マスタ" Click="NavigateAttribute" Grid.Column="1"/>
             <Button Content="属性登録" Click="NavigateRegisterAttribute" Grid.Column="2"/>
-            <Button Content="会社マスタ" Click="NavigateBlank" Grid.Column="3"/>
-            <Button Content="会社ID連携" Click="NavigateBlank" Grid.Column="4"/>
+            <Button Content="会社マスタ" Click="NavigateCompany" Grid.Column="3"/>
+            <Button Content="会社ID連携" Click="NavigateCompanyLink" Grid.Column="4"/>
             <Button Content="健診マスタ" Click="NavigateBlank" Grid.Column="5"/>
             <Button Content="健診データ登録" Click="NavigateBlank" Grid.Column="6"/>
             <TextBlock Text="操作者：上原太郎　さん" Grid.Column="7" HorizontalAlignment="Right"/>
