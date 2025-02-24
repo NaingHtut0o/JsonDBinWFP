@@ -4,9 +4,13 @@
              xmlns:local="clr-namespace:SmartHealthTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <SolidColorBrush x:Key="WindowBackground" Color="#FFE8BF"/>
+        <SolidColorBrush x:Key="ButtonBrush" Color="#55441E"/>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#FFC150"/>
+        <SolidColorBrush x:Key="AlternateBrush" Color="#fcf3e3"/>
         <Style TargetType="Button">
-            <Setter Property="Background" Value="DarkOrange"/>
-            <Setter Property="BorderBrush" Value="DarkOrange"/>
+            <Setter Property="Background" Value="#55441E"/>
+            <Setter Property="BorderBrush" Value="#55441E"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -15,14 +19,21 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="White"/>
-                    <Setter Property="BorderBrush" Value="DarkOrange"/>
-                    <Setter Property="Foreground" Value="DarkOrange"/>
+                    <Setter Property="BorderBrush" Value="#55441E"/>
+                    <Setter Property="Foreground" Value="#55441E"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <!--<Setter Property="Foreground" Value="#FFC150"/> -->
+        </Style>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="#FFE8BF"/>
+        </Style>
+        <Style TargetType="Page">
+            <Setter Property="Background" Value="#FFE8BF"/>
         </Style>
     </Application.Resources>
 </Application>

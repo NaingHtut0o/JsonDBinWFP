@@ -21,6 +21,8 @@ namespace SmartHealthTest.Views
         private List<AttributeMasterModel> AttributeData;
         private Dictionary<string, TextBox> textBoxes;
         private string currentOsId;
+        private SolidColorBrush btnBrush;
+        private SolidColorBrush prmBrush;
 
         public RegisterAttributePage()
         {
@@ -54,6 +56,8 @@ namespace SmartHealthTest.Views
             _attributeNames.RowDefinitions.Clear();
             AttributeData = _attributeDatabase.GetAll();
             textBoxes = new Dictionary<string, TextBox>();
+            btnBrush = new SolidColorBrush(Colors.Black);
+            prmBrush = new SolidColorBrush(Colors.DarkOrange);
             int i = 0;
             foreach (var attribute in AttributeData)
             {
@@ -91,6 +95,10 @@ namespace SmartHealthTest.Views
                 _attributeNames.Children.Add(grid);
                 i++;
             }
+            if (Application.Current.Resources["ButtonBrush"] is SolidColorBrush brush)
+                btnBrush = brush as SolidColorBrush;
+            if (Application.Current.Resources["PrimaryBrush"] is SolidColorBrush pbrush)
+                prmBrush = pbrush as SolidColorBrush;
         }
 
         private void CreateColumns()
@@ -102,8 +110,8 @@ namespace SmartHealthTest.Views
                 _headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 Border border = new Border
                 {
-                    BorderThickness = new Thickness(1, 0, 1, 1),
-                    BorderBrush = new SolidColorBrush(Colors.White),
+                    //BorderThickness = new Thickness(1, 0, 1, 1),
+                    //BorderBrush = new SolidColorBrush(Colors.White),
                     Child = new TextBlock
                     {
                         Text = " " + header.AttributeName,
@@ -121,8 +129,8 @@ namespace SmartHealthTest.Views
             _headerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength (1, GridUnitType.Star) });
             Border border1 = new Border
             {
-                BorderThickness = new Thickness(1, 0, 1, 1),
-                BorderBrush = new SolidColorBrush(Colors.White),
+                //BorderThickness = new Thickness(1, 0, 1, 1),
+                //BorderBrush = new SolidColorBrush(Colors.White),
                 Child = new TextBlock
                 {
                     Text = " 活動",
@@ -189,8 +197,8 @@ namespace SmartHealthTest.Views
                 attributeValue = RegisterAttribute.Where(r => r.AttributeId == header.AttributeId).Select(r => r.AttributeValue).FirstOrDefault();
                 Border border = new Border
                 {
-                    BorderThickness = new Thickness(1, 0, 1, 1),
-                    BorderBrush = new SolidColorBrush(Colors.DarkOrange),
+                    BorderThickness = new Thickness(.5, 0, .5, .5),
+                    BorderBrush = prmBrush,
                     Background = new SolidColorBrush(Colors.LightYellow),
                     Child = new TextBlock
                     {
@@ -215,17 +223,18 @@ namespace SmartHealthTest.Views
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontFamily = new FontFamily("Segoe MDL2 Assets"),
-                Foreground = new SolidColorBrush(Colors.DarkOrange),
                 Width = 20,
                 Background = new SolidColorBrush(Colors.Transparent),
                 BorderThickness = new Thickness(0),
+                Foreground = btnBrush,
             };
             deleteButton.Click += ConfirmDelete;
             Border border1 = new Border
             {
-                BorderThickness = new Thickness(1, 0, 1, 1),
-                BorderBrush = new SolidColorBrush(Colors.DarkOrange),
-                Child = deleteButton
+                BorderThickness = new Thickness(.5, 0, .5, .5),
+                Child = deleteButton,
+                BorderBrush = prmBrush,
+                Background = new SolidColorBrush(Colors.LightYellow),
             };
             Grid.SetColumn(border1, i);
             _bodyGrid.Children.Add(border1);

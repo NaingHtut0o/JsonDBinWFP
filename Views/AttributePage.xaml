@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
-        Title="属性マスタ" Height="Auto" Width="Auto" Background="LightYellow">
+        Title="属性マスタ" Height="Auto" Width="Auto" Background="{StaticResource WindowBackground}">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -14,7 +14,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<TextBlock Text="属性マスタ" FontSize="22" FontWeight="Bold" Margin="10" Foreground="DarkOrange"/>
+		<TextBlock Text="属性マスタ" FontSize="22" FontWeight="Bold" Margin="10" Foreground="{DynamicResource PrimaryBrush}"/>
 
 		<Grid Grid.Row="1">
 			<Grid.RowDefinitions>
@@ -32,7 +32,7 @@
 				<TextBlock Grid.Column="0" Text="属性ID" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="75"/>
 				<TextBox Grid.Column="1" Width="430" FontSize="16" VerticalContentAlignment="Center" x:Name="searchID" Margin="0 0 5 0"/>
 				<Button Grid.Column="2" Width="60" Content="検索" FontSize="16" Margin="0 0 5 0" Click="Search"/>
-				<Button Grid.Column="3" Width="60" Background="White" Foreground="DarkOrange" Content="クリア" FontSize="16"  Margin="0 0 5 0" Click="Clear"/>
+				<Button Grid.Column="3" Width="60" Background="White" Foreground="{DynamicResource ButtonBrush}" Content="クリア" FontSize="16"  Margin="0 0 5 0" Click="Clear"/>
 			</Grid>
 
 			<Grid Grid.Row="1" Margin="80,10,50,0" Height="30" VerticalAlignment="Center">
@@ -46,20 +46,29 @@
 			</Grid>
 		</Grid>
 
-		<DataGrid x:Name="dgAttributes" Grid.Row="2" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="True" CanUserSortColumns="True" LoadingRow="dgAttributes_LoadingRow" RowHeaderWidth="0" ColumnHeaderHeight="30" RowHeight="25" FontSize="16">
+		<DataGrid x:Name="dgAttributes" Grid.Row="2" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="True" CanUserSortColumns="True" LoadingRow="dgAttributes_LoadingRow" RowHeaderWidth="0" ColumnHeaderHeight="30" RowHeight="25" FontSize="16" >
 			<DataGrid.Resources>
 				<Style TargetType="DataGridColumnHeader">
-					<Setter Property="Background" Value="DarkOrange"/>
+					<Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
 					<!-- Header Background Color -->
 					<Setter Property="Foreground" Value="White"/>
 					<!-- Header Text Color -->
 					<Setter Property="FontSize" Value="16"/>
 					<Setter Property="FontWeight" Value="Bold"/>
-					<Setter Property="BorderBrush" Value="White"/>
-					<Setter Property="BorderThickness" Value="1"/>
-				</Style>
-			</DataGrid.Resources>
-			<DataGrid.RowStyle>
+					<Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                </Style>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </DataGrid.Resources>
+			<!--<DataGrid.RowStyle>
 				<Style TargetType="DataGridRow">
 					<Style.Triggers>
 						<Trigger Property="IsMouseOver" Value="True">
@@ -67,15 +76,15 @@
 						</Trigger>
 					</Style.Triggers>
 				</Style>
-			</DataGrid.RowStyle>
+			</DataGrid.RowStyle>-->
 
 			<DataGrid.Columns>
-				<DataGridTextColumn Header=" ID" Binding="{Binding AttributeId}" Width="2*"/>
-				<DataGridTextColumn Header=" 属性名" Binding="{Binding AttributeName}" Width="6*"/>
+                <DataGridTextColumn Header=" ID" Binding="{Binding AttributeId}" Width="2*"/>
+                <DataGridTextColumn Header=" 属性名" Binding="{Binding AttributeName}" Width="6*"/>
 				<DataGridTemplateColumn Header=" 活動" Width="2*">
 					<DataGridTemplateColumn.CellTemplate>
 						<DataTemplate>
-							<Button Click="ConfirmDelete" Tag="{Binding}" Background="Transparent" BorderThickness="0" Width="20" Content="&#xE74D;" Foreground="DarkOrange" FontFamily="Segoe MDL2 Assets"/>
+							<Button Click="ConfirmDelete" Tag="{Binding}" Background="Transparent" BorderThickness="0" Width="20" Content="&#xE74D;" Foreground="{DynamicResource ButtonBrush}" FontFamily="Segoe MDL2 Assets"/>
 						</DataTemplate>
 					</DataGridTemplateColumn.CellTemplate>
 				</DataGridTemplateColumn>
@@ -86,24 +95,24 @@
 				<RowDefinition Height="30"/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<Grid Grid.Row="0" Background="DarkOrange">
+			<Grid Grid.Row="0" Background="{DynamicResource PrimaryBrush}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="2*"/>
 					<ColumnDefinition Width="6*"/>
 					<ColumnDefinition Width="2*"/>
 				</Grid.ColumnDefinitions>
-				<Border Grid.Column="0" BorderBrush="White" BorderThickness="1">
+				<Border Grid.Column="0">
 					<TextBlock Text=" ID" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
 				</Border>
-				<Border Grid.Column="1" BorderBrush="White" BorderThickness="1">
+				<Border Grid.Column="1">
 					<TextBlock Text=" 属性名" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
 				</Border>
-				<Border Grid.Column="2" BorderBrush="White" BorderThickness="1">
+				<Border Grid.Column="2">
 					<TextBlock Text=" 活動" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
 				</Border>
 			</Grid>
 			<Grid Grid.Row="1">
-				<TextBlock Background="LightYellow" FontSize="50" FontWeight="Bold" Text="データ 無し" Foreground="Red" HorizontalAlignment="Center"/>
+				<TextBlock Background="{DynamicResource WindowBackground}" FontSize="50" FontWeight="Bold" Text="データ 無し" Foreground="Red" HorizontalAlignment="Center"/>
 			</Grid>
 		</Grid>
 

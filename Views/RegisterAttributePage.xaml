@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
-        Title="属性登録" Height="Auto" Width="Auto" Background="LightYellow">
+        Title="属性登録" Height="Auto" Width="Auto" Background="{StaticResource WindowBackground}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="属性登録" FontSize="22" FontWeight="Bold" Margin="10" Foreground="DarkOrange"/>
+        <TextBlock Text="属性登録" FontSize="22" FontWeight="Bold" Margin="10" Foreground="{StaticResource PrimaryBrush}"/>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -32,7 +32,7 @@
                 <TextBlock Grid.Column="0" Text="都市OSID" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="75"/>
                 <TextBox Grid.Column="1" Width="430" FontSize="16" VerticalContentAlignment="Center" x:Name="searchID" Margin="0 0 5 0"/>
                 <Button Grid.Column="2" Width="60" Content="検索" FontSize="16" Margin="0 0 5 0" Click="Search"/>
-                <Button Grid.Column="3" Width="60" Background="White" Foreground="DarkOrange" Content="クリア" FontSize="16"  Margin="0 0 5 0" Click="Clear"/>
+                <Button Grid.Column="3" Width="60" Background="White" Foreground="#55441E" Content="クリア" FontSize="16"  Margin="0 0 5 0" Click="Clear"/>
             </Grid>
 
             <Grid Grid.Row="1" x:Name="_attributeNames"/>
@@ -43,7 +43,7 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Background="DarkOrange" x:Name="_headerGrid"/>
+            <Grid Grid.Row="0" Background="#FFC150" x:Name="_headerGrid"/>
             <Grid Grid.Row="1" x:Name="_bodyGrid"/>
         </Grid>
 

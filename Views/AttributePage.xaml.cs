@@ -17,6 +17,8 @@ namespace SmartHealthTest.Views
     {
         private JsonDatabase<AttributeMasterModel> _attributeDatabase;
         public ObservableCollection<AttributeMasterModel> AttributeData;
+        private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
+        private SolidColorBrush _altBrush = new SolidColorBrush(Colors.MintCream);
         public AttributePage()
         {
             InitializeComponent();
@@ -43,6 +45,10 @@ namespace SmartHealthTest.Views
         private void LoadData()
         {
             AttributeData = new ObservableCollection<AttributeMasterModel>(_attributeDatabase.GetAll());
+            if (Application.Current.Resources["WindowBackground"] is SolidColorBrush brush)
+                _colorBrush = brush;
+            if (Application.Current.Resources["AlternateBrush"] is SolidColorBrush abrush)
+                _altBrush = abrush;
         }
 
         private void Update(object sender, RoutedEventArgs e)
@@ -129,11 +135,11 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.Background = Brushes.LightYellow;
+                e.Row.Background = _colorBrush;
             }
             else
             {
-                e.Row.Background = Brushes.MintCream;
+                e.Row.Background = _altBrush;
             }
         }
 

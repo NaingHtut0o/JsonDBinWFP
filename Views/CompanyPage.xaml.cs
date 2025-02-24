@@ -16,6 +16,7 @@ namespace SmartHealthTest.Views
     {
         private JsonDatabase<CompanyMasterModel> _companyDatabase;
         public ObservableCollection<CompanyMasterModel> CompanyData;
+        private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
         public CompanyPage()
         {
             InitializeComponent();
@@ -42,6 +43,8 @@ namespace SmartHealthTest.Views
         private void LoadData()
         {
             CompanyData = new ObservableCollection<CompanyMasterModel>(_companyDatabase.GetAll());
+            if (Application.Current.Resources["WindowBackground"] is SolidColorBrush brush)
+                _colorBrush = brush;
         }
 
         private void Update(object sender, RoutedEventArgs e)
@@ -128,7 +131,7 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.Background = Brushes.LightYellow;
+                e.Row.Background = _colorBrush;
             }
             else
             {

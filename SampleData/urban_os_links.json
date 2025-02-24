@@ -1,8 +1,26 @@
 [
-    {
-        "Id": 1,
-        "UrbanOsId": "URBANID123456789",
-        "CompanyId": 1,
-        "ExternalId": "JOTO1234567890"
-    }
+  {
+    "Id": 1,
+    "UrbanOsId": "URBANID123456789",
+    "CompanyId": 1,
+    "ExternalId": "JOTO1234567890"
+  },
+  {
+    "Id": 3,
+    "UrbanOsId": "URBANID123456789",
+    "CompanyId": 7,
+    "ExternalId": "UNDER9876543210"
+  },
+  {
+    "Id": 4,
+    "UrbanOsId": "URBANID123456789",
+    "CompanyId": 2,
+    "ExternalId": "OCC5463728190"
+  },
+  {
+    "Id": 5,
+    "UrbanOsId": "URBANID234567890",
+    "CompanyId": 2,
+    "ExternalId": "OCC9182736450"
+  }
 ]
