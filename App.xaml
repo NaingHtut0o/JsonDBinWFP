@@ -5,10 +5,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <SolidColorBrush x:Key="WindowBackground" Color="#FFE8BF"/>
-        <SolidColorBrush x:Key="ButtonBrush" Color="#55441E"/>
+        <SolidColorBrush x:Key="ButtonBrush" Color="#ffb12b"/>
         <SolidColorBrush x:Key="PrimaryBrush" Color="#FFC150"/>
         <SolidColorBrush x:Key="AlternateBrush" Color="#fcf3e3"/>
-        <Style TargetType="Button">
+        <SolidColorBrush x:Key="TextBrush" Color="#ffffff"/>
+        <SolidColorBrush x:Key="ClearBrush" Color="#f2684f"/>
+        <SolidColorBrush x:Key="HoverBrush" Color="#bb52a6"/>
+        <!--<Style TargetType="Button">
             <Setter Property="Background" Value="#55441E"/>
             <Setter Property="BorderBrush" Value="#55441E"/>
             <Setter Property="Foreground" Value="White"/>
@@ -23,6 +26,32 @@
                     <Setter Property="Foreground" Value="#55441E"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>-->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="2" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonBrush}"/>
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="Black" Direction="320" BlurRadius="10" ShadowDepth="3"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>

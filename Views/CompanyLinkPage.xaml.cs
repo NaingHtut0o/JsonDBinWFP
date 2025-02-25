@@ -23,6 +23,7 @@ namespace SmartHealthTest.Views
         private SolidColorBrush _altBrush = new SolidColorBrush(Colors.MintCream);
         private SolidColorBrush _prmBrush = new SolidColorBrush(Colors.DarkOrange);
         private SolidColorBrush _btnBrush = new SolidColorBrush(Colors.DarkOrange);
+        private SolidColorBrush _textBrush = new SolidColorBrush(Colors.White);
 
         public CompanyLinkPage()
         {
@@ -50,6 +51,8 @@ namespace SmartHealthTest.Views
                 _prmBrush = pbrush;
             if (Application.Current.Resources["ButtonBrush"] is SolidColorBrush bbrush)
                 _btnBrush = bbrush;
+            if (Application.Current.Resources["TextBrush"] is SolidColorBrush tbrush)
+                _textBrush = tbrush;
         }
 
         #region page_functions
@@ -140,6 +143,24 @@ namespace SmartHealthTest.Views
             else
             {
                 e.Row.Background = Brushes.MintCream;
+            }
+        }
+
+        private void Button_Mouse_Enter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                btn.Background = _textBrush;
+            }
+        }
+
+        private void Button_Mouse_Leave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                btn.Background = _btnBrush;
             }
         }
 
@@ -238,10 +259,12 @@ namespace SmartHealthTest.Views
                     Width = 20,
                     Background = new SolidColorBrush(Colors.Transparent),
                     BorderThickness = new Thickness(0),
-                    Foreground = _btnBrush,
+                    Foreground = new SolidColorBrush(Colors.Red),
                     Tag = companyLink.Id,
                 };
                 btnDel.Click += ConfirmDelete;
+                if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
+                    btnDel.Template = buttonTemplate;
                 Border border4 = attachBorder(btnDel);
                 Grid.SetColumn(border4, 4);
                 grid.Children.Add(border4);
@@ -275,6 +298,7 @@ namespace SmartHealthTest.Views
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontSize = 16,
+                Foreground = new SolidColorBrush(Colors.DarkBlue),
             };
             return textBlock;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,7 @@ namespace SmartHealthTest.Views
         private string currentOsId;
         private SolidColorBrush btnBrush;
         private SolidColorBrush prmBrush;
+        private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
 
         public RegisterAttributePage()
         {
@@ -99,6 +101,8 @@ namespace SmartHealthTest.Views
                 btnBrush = brush as SolidColorBrush;
             if (Application.Current.Resources["PrimaryBrush"] is SolidColorBrush pbrush)
                 prmBrush = pbrush as SolidColorBrush;
+            if (Application.Current.Resources["WindowBackground"] is SolidColorBrush bbrush)
+                _colorBrush = bbrush;
         }
 
         private void CreateColumns()
@@ -117,7 +121,7 @@ namespace SmartHealthTest.Views
                         Text = " " + header.AttributeName,
                         HorizontalAlignment = HorizontalAlignment.Left,
                         VerticalAlignment = VerticalAlignment.Center,
-                        FontSize = 16,
+                        FontSize = 18,
                         FontWeight = FontWeights.Bold,
                         Foreground = new SolidColorBrush(Colors.White),
                     }
@@ -136,7 +140,7 @@ namespace SmartHealthTest.Views
                     Text = " 活動",
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
-                    FontSize = 16,
+                    FontSize = 18,
                     FontWeight = FontWeights.Bold,
                     Foreground = new SolidColorBrush(Colors.White),
                 }
@@ -190,16 +194,18 @@ namespace SmartHealthTest.Views
             _bodyGrid.RowDefinitions.Clear();
             _bodyGrid.ColumnDefinitions.Clear();
             int i = 0;
+            _bodyGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(40) });
+            Grid grid = new Grid();
             foreach (var header in AttributeData)
             {
-                _bodyGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 string attributeValue = String.Empty;
                 attributeValue = RegisterAttribute.Where(r => r.AttributeId == header.AttributeId).Select(r => r.AttributeValue).FirstOrDefault();
                 Border border = new Border
                 {
                     BorderThickness = new Thickness(.5, 0, .5, .5),
                     BorderBrush = prmBrush,
-                    Background = new SolidColorBrush(Colors.LightYellow),
+                    Background = _colorBrush,
                     Child = new TextBlock
                     {
                         Text = " " + attributeValue,
@@ -211,12 +217,12 @@ namespace SmartHealthTest.Views
                     }
                 };
                 Grid.SetColumn(border, i);
-                _bodyGrid.Children.Add(border);
+                grid.Children.Add(border);
                 i++;
                 //MessageBox.Show(i.ToString());
                 textBoxes[header.AttributeId].Text = attributeValue;
             }
-            _bodyGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             Button deleteButton = new Button
             {
                 Content = "\uE74D",
@@ -229,15 +235,19 @@ namespace SmartHealthTest.Views
                 Foreground = btnBrush,
             };
             deleteButton.Click += ConfirmDelete;
+            if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
+                deleteButton.Template = buttonTemplate;
             Border border1 = new Border
             {
                 BorderThickness = new Thickness(.5, 0, .5, .5),
                 Child = deleteButton,
                 BorderBrush = prmBrush,
-                Background = new SolidColorBrush(Colors.LightYellow),
+                Background = _colorBrush,
             };
             Grid.SetColumn(border1, i);
-            _bodyGrid.Children.Add(border1);
+            grid.Children.Add(border1);
+            Grid.SetRow(grid, 0);
+            _bodyGrid.Children.Add(grid);
         }
 
         private void Update(object sender, RoutedEventArgs e)
