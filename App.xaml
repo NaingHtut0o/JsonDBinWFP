@@ -10,23 +10,26 @@
         <SolidColorBrush x:Key="AlternateBrush" Color="#fcf3e3"/>
         <SolidColorBrush x:Key="TextBrush" Color="#ffffff"/>
         <SolidColorBrush x:Key="ClearBrush" Color="#f2684f"/>
-        <SolidColorBrush x:Key="HoverBrush" Color="#bb52a6"/>
-        <!--<Style TargetType="Button">
-            <Setter Property="Background" Value="#55441E"/>
-            <Setter Property="BorderBrush" Value="#55441E"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="16"/>
+        <SolidColorBrush x:Key="DataGridBrush" Color="#A36A00"/>
 
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="White"/>
-                    <Setter Property="BorderBrush" Value="#55441E"/>
-                    <Setter Property="Foreground" Value="#55441E"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>-->
+        <!-- Light Themes -->
+        <SolidColorBrush x:Key="WindowBackgroundLight" Color="#FFE8BF"/>
+        <SolidColorBrush x:Key="ButtonBrushLight" Color="#ffb12b"/>
+        <SolidColorBrush x:Key="PrimaryBrushLight" Color="#FFC150"/>
+        <SolidColorBrush x:Key="AlternateBrushLight" Color="#fcf3e3"/>
+        <SolidColorBrush x:Key="TextBrushLight" Color="#ffffff"/>
+        <SolidColorBrush x:Key="ClearBrushLight" Color="#f2684f"/>
+        <SolidColorBrush x:Key="DataGridBrushLight" Color="#A36A00"/>
+
+        <!-- Dark Themes -->
+        <SolidColorBrush x:Key="WindowBackgroundDark" Color="#1c2a2b"/>
+        <SolidColorBrush x:Key="ButtonBrushDark" Color="#000000"/>
+        <SolidColorBrush x:Key="PrimaryBrushDark" Color="#021011"/>
+        <SolidColorBrush x:Key="AlternateBrushDark" Color="#2f3c3d"/>
+        <SolidColorBrush x:Key="TextBrushDark" Color="#ffffff"/>
+        <SolidColorBrush x:Key="ClearBrushDark" Color="#f26448"/>
+        <SolidColorBrush x:Key="DataGridBrushDark" Color="#e0e2e2"/>
+
         <Style TargetType="Button">
             <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
             <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
@@ -42,9 +45,10 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonBrush}"/>
+                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ButtonBrush}"/>
                                 <Setter TargetName="border" Property="Effect">
                                     <Setter.Value>
-                                        <DropShadowEffect Color="Black" Direction="320" BlurRadius="10" ShadowDepth="3"/>
+                                        <DropShadowEffect Color="#ffb12b" Direction="320" BlurRadius="10" ShadowDepth="3"/>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
@@ -53,16 +57,73 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="Button" x:Key="ClearStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource ClearBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource ClearBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="2" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#f2684f" Direction="320" BlurRadius="10" ShadowDepth="2"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" x:Key="DeleteStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource ClearBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#f2684f" Direction="320" BlurRadius="10" ShadowDepth="2"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <!--<Setter Property="Foreground" Value="#FFC150"/> -->
         </Style>
+        
         <Style TargetType="Window">
-            <Setter Property="Background" Value="#FFE8BF"/>
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
         </Style>
+        
         <Style TargetType="Page">
-            <Setter Property="Background" Value="#FFE8BF"/>
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource AlternateBrush}"/>
         </Style>
     </Application.Resources>
 </Application>

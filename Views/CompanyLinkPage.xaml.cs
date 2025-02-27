@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace SmartHealthTest.Views
         private SolidColorBrush _prmBrush = new SolidColorBrush(Colors.DarkOrange);
         private SolidColorBrush _btnBrush = new SolidColorBrush(Colors.DarkOrange);
         private SolidColorBrush _textBrush = new SolidColorBrush(Colors.White);
+        private SolidColorBrush _dataGridBrush;
 
         public CompanyLinkPage()
         {
@@ -34,6 +36,11 @@ namespace SmartHealthTest.Views
             //dgCompanyLink.ItemsSource = companyLinks;
             CheckIfNoData(allUrbanOsLinks);
             comboBoxData();
+
+            this.SizeChanged += (s, e) =>
+            {
+                dgScroll.MaxHeight = this.ActualHeight - 320; // 50% of window height
+            };
         }
 
         private void LoadData()
@@ -53,6 +60,7 @@ namespace SmartHealthTest.Views
                 _btnBrush = bbrush;
             if (Application.Current.Resources["TextBrush"] is SolidColorBrush tbrush)
                 _textBrush = tbrush;
+            _dataGridBrush = Application.Current.Resources["DataGridBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.BlueViolet);
         }
 
         #region page_functions
@@ -134,18 +142,6 @@ namespace SmartHealthTest.Views
             }
         }
 
-        private void dgCompanyLink_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            if (e.Row.GetIndex() % 2 == 0)
-            {
-                e.Row.Background = _colorBrush;
-            }
-            else
-            {
-                e.Row.Background = Brushes.MintCream;
-            }
-        }
-
         private void Button_Mouse_Enter(object sender, EventArgs e)
         {
             Button btn = sender as Button;
@@ -206,8 +202,9 @@ namespace SmartHealthTest.Views
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 50,
                 FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.Red),
+                //Foreground = new SolidColorBrush(Colors.Red),
             };
+            textBlock.SetResourceReference(Button.ForegroundProperty, "ClearBrush");
             Grid.SetColumn(textBlock, 0);
             dgCompanyLink.Children.Add(textBlock);
         }
@@ -228,6 +225,7 @@ namespace SmartHealthTest.Views
                     Text = companyLink.Id.ToString(),
                 };
                 Border border = attachBorder(idBlock);
+                border.Visibility = Visibility.Collapsed;
                 Grid.SetColumn(border, 0);
                 grid.Children.Add(border);
 
@@ -257,22 +255,21 @@ namespace SmartHealthTest.Views
                     VerticalAlignment = VerticalAlignment.Center,
                     FontFamily = new FontFamily("Segoe MDL2 Assets"),
                     Width = 20,
-                    Background = new SolidColorBrush(Colors.Transparent),
                     BorderThickness = new Thickness(0),
-                    Foreground = new SolidColorBrush(Colors.Red),
                     Tag = companyLink.Id,
                 };
                 btnDel.Click += ConfirmDelete;
-                if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
-                    btnDel.Template = buttonTemplate;
+                btnDel.Style = (Style)FindResource("DeleteStyle");
+                //if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
+                //    btnDel.Template = buttonTemplate;
                 Border border4 = attachBorder(btnDel);
                 Grid.SetColumn(border4, 4);
                 grid.Children.Add(border4);
                 
                 if(i%2 ==0)
-                    grid.Background = _colorBrush;
+                    grid.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
                 else
-                    grid.Background = _altBrush;
+                    grid.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
                 Grid.SetRow(grid, i);
                 dgCompanyLink.Children.Add(grid);
                 i++;
@@ -284,9 +281,10 @@ namespace SmartHealthTest.Views
             Border border = new Border
             {
                 BorderThickness = new Thickness(.5, 0, .5, .5),
-                BorderBrush = _prmBrush,
+                //BorderBrush = _prmBrush,
                 Child = child,
             };
+            border.SetResourceReference(Button.BorderBrushProperty, "PrimaryBrush");
             return border;
         }
 
@@ -298,8 +296,9 @@ namespace SmartHealthTest.Views
                 HorizontalAlignment = HorizontalAlignment.Left,
                 VerticalAlignment = VerticalAlignment.Center,
                 FontSize = 16,
-                Foreground = new SolidColorBrush(Colors.DarkBlue),
+                //Foreground = _dataGridBrush,
             };
+            textBlock.SetResourceReference(Button.ForegroundProperty, "DataGridBrush");
             return textBlock;
         }
 

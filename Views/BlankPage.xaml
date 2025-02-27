@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
-        Title="Blank" Height="450" Width="800" Background="{StaticResource WindowBackground}">
+        Title="Blank" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="無" FontSize="150" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource PrimaryBrush}"/>
+        <TextBlock Text="無" FontSize="150" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBrush}"/>
     </Grid>
 </Page>

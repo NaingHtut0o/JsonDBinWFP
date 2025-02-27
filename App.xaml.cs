@@ -60,8 +60,9 @@ namespace SmartHealthTest
 
             // Store the template in Application Resources
             Resources["CustomButtonTemplate"] = buttonTemplate;
-#endregion template one
+            #endregion template one
         }
+
     }
 
 }

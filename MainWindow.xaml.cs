@@ -62,6 +62,14 @@ namespace SmartHealthTest
             MainFrame.Navigate(new CompanyLinkPage());
         }
 
+        private void NavigateHealthCheck(object sender, RoutedEventArgs e)
+        {
+            ResetAllButtonStyle();
+            var button = sender as Button;
+            button.Style = (Style)FindResource("ClickButtonStyle");
+            MainFrame.Navigate(new HealthCheckPage());
+        }
+
         private void NavigateBlank(object sender, RoutedEventArgs e)
         {
             ResetAllButtonStyle();
@@ -100,6 +108,47 @@ namespace SmartHealthTest
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
                 GetButtonsRecursive(child, buttons);
             }
+        }
+        private void DarkModeToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            // Apply Dark Theme
+            var _winBrush = Application.Current.Resources["WindowBackgroundDark"];
+            var _btnBrush = Application.Current.Resources["ButtonBrushDark"];
+            var _prmBrush = Application.Current.Resources["PrimaryBrushDark"];
+            var _altBrush = Application.Current.Resources["AlternateBrushDark"];
+            var _clearBrush = Application.Current.Resources["ClearBrushDark"];
+            var _dgBrush = Application.Current.Resources["DataGridBrushDark"];
+
+            Application.Current.Resources["WindowBackground"] = _winBrush;
+            Application.Current.Resources["ButtonBrush"] = _btnBrush;
+            Application.Current.Resources["PrimaryBrush"] = _prmBrush;
+            Application.Current.Resources["AlternateBrush"] = _altBrush;
+            Application.Current.Resources["ClearBrush"] = _clearBrush;
+            Application.Current.Resources["DataGridBrush"] = _dgBrush;
+
+            // Update UI
+            DarkModeToggle.Content = "🌙Dark Mode";
+        }
+
+        private void DarkModeToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            // Apply Light Theme
+            var _winBrush = Application.Current.Resources["WindowBackgroundLight"];
+            var _btnBrush = Application.Current.Resources["ButtonBrushLight"];
+            var _prmBrush = Application.Current.Resources["PrimaryBrushLight"];
+            var _altBrush = Application.Current.Resources["AlternateBrushLight"];
+            var _clearBrush = Application.Current.Resources["ClearBrushLight"];
+            var _dgBrush = Application.Current.Resources["DataGridBrushLight"];
+
+            Application.Current.Resources["WindowBackground"] = _winBrush;
+            Application.Current.Resources["ButtonBrush"] = _btnBrush;
+            Application.Current.Resources["PrimaryBrush"] = _prmBrush;
+            Application.Current.Resources["AlternateBrush"] = _altBrush;
+            Application.Current.Resources["ClearBrush"] = _clearBrush;
+            Application.Current.Resources["DataGridBrush"] = _dgBrush;
+
+            // Update UI
+            DarkModeToggle.Content = "☀️Light Mode";
         }
     }
 }

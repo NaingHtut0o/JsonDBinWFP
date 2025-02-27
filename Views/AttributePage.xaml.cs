@@ -26,9 +26,16 @@ namespace SmartHealthTest.Views
             LoadData();
             dgAttributes.ItemsSource = AttributeData;
             CheckIfNoData();
+
+            this.SizeChanged += (s, e) =>
+            {
+                dgAttributes.MaxHeight = this.ActualHeight - 230; // 50% of window height
+                dgAttributes.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                dgAttributes.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            };
         }
 
-        private void CheckIfNoData()
+    private void CheckIfNoData()
         {
             if (dgAttributes.Items.Count == 0)
             {
@@ -135,11 +142,11 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.Background = _colorBrush;
+                e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
             }
             else
             {
-                e.Row.Background = _altBrush;
+                e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
             }
         }
 

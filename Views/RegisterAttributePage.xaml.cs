@@ -24,7 +24,9 @@ namespace SmartHealthTest.Views
         private string currentOsId;
         private SolidColorBrush btnBrush;
         private SolidColorBrush prmBrush;
-        private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
+        private SolidColorBrush _colorBrush;
+        private SolidColorBrush _dataGridBrush;
+        private SolidColorBrush _altBrush;
 
         public RegisterAttributePage()
         {
@@ -36,6 +38,11 @@ namespace SmartHealthTest.Views
             this.DataContext = this;
             CreateColumns();
             //dgAttributes.ItemsSource = AttributeData;
+
+            this.SizeChanged += (s, e) =>
+            {
+                gridScroll.MaxHeight = this.ActualHeight - 310;
+            };
         }
 
         /* private void LoadData()
@@ -55,11 +62,14 @@ namespace SmartHealthTest.Views
 
         private void LoadData()
         {
+            btnBrush = Application.Current.Resources["ButtonBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.DarkOrange);
+            prmBrush = Application.Current.Resources["PrimaryBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.DarkOrange);
+            _colorBrush = Application.Current.Resources["WindowBackground"] as SolidColorBrush ?? new SolidColorBrush(Colors.LightYellow);
+            _dataGridBrush = Application.Current.Resources["DataGridBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.BlueViolet);
+            _altBrush = Application.Current.Resources["AlternateBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.MintCream);
             _attributeNames.RowDefinitions.Clear();
             AttributeData = _attributeDatabase.GetAll();
             textBoxes = new Dictionary<string, TextBox>();
-            btnBrush = new SolidColorBrush(Colors.Black);
-            prmBrush = new SolidColorBrush(Colors.DarkOrange);
             int i = 0;
             foreach (var attribute in AttributeData)
             {
@@ -67,7 +77,7 @@ namespace SmartHealthTest.Views
                 Grid grid = new Grid
                 {
                     Margin = new Thickness(80, 10, 50, 0),
-                    Height = 30,
+                    Height = 35,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -78,7 +88,9 @@ namespace SmartHealthTest.Views
                     FontWeight = FontWeights.Bold,
                     FontSize = 16,
                     Width = 75,
+                    //Foreground = prmBrush,
                 };
+                textBlock.SetResourceReference(Button.ForegroundProperty, "PrimaryBrush");
                 Grid.SetColumn(textBlock, 0);
                 grid.Children.Add(textBlock);
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -88,8 +100,11 @@ namespace SmartHealthTest.Views
                     FontSize = 16,
                     Width = 430,
                     Margin = new Thickness(0, 0, 5, 0),
+                    Foreground = _dataGridBrush,
+                    //Background = _altBrush,
                     //Text = attribute.AttributeName,
                 };
+                textBox.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
                 textBoxes.Add(attribute.AttributeId, textBox);
                 Grid.SetColumn(textBox, 1);
                 grid.Children.Add(textBox);
@@ -97,12 +112,6 @@ namespace SmartHealthTest.Views
                 _attributeNames.Children.Add(grid);
                 i++;
             }
-            if (Application.Current.Resources["ButtonBrush"] is SolidColorBrush brush)
-                btnBrush = brush as SolidColorBrush;
-            if (Application.Current.Resources["PrimaryBrush"] is SolidColorBrush pbrush)
-                prmBrush = pbrush as SolidColorBrush;
-            if (Application.Current.Resources["WindowBackground"] is SolidColorBrush bbrush)
-                _colorBrush = bbrush;
         }
 
         private void CreateColumns()
@@ -161,8 +170,9 @@ namespace SmartHealthTest.Views
                 HorizontalAlignment = HorizontalAlignment.Center,
                 FontSize = 50,
                 FontWeight = FontWeights.Bold,
-                Foreground = new SolidColorBrush(Colors.Red),
+                //Foreground = new SolidColorBrush(Colors.Red),
             };
+            textBlock.SetResourceReference(Button.ForegroundProperty, "ClearBrush");
             Grid.SetColumn(textBlock, 0);
             _bodyGrid.Children.Add(textBlock);
         }
@@ -205,17 +215,18 @@ namespace SmartHealthTest.Views
                 {
                     BorderThickness = new Thickness(.5, 0, .5, .5),
                     BorderBrush = prmBrush,
-                    Background = _colorBrush,
+                    //Background = _colorBrush,
                     Child = new TextBlock
                     {
                         Text = " " + attributeValue,
                         HorizontalAlignment = HorizontalAlignment.Left,
                         VerticalAlignment = VerticalAlignment.Center,
                         FontSize = 16,
-                        FontWeight = FontWeights.Bold,
-                        Foreground = new SolidColorBrush(Colors.Black),
+                        //FontWeight = FontWeights.Bold,
+                        Foreground = _dataGridBrush,
                     }
                 };
+                border.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
                 Grid.SetColumn(border, i);
                 grid.Children.Add(border);
                 i++;
@@ -230,20 +241,22 @@ namespace SmartHealthTest.Views
                 VerticalAlignment = VerticalAlignment.Center,
                 FontFamily = new FontFamily("Segoe MDL2 Assets"),
                 Width = 20,
-                Background = new SolidColorBrush(Colors.Transparent),
+                //Background = new SolidColorBrush(Colors.Transparent),
                 BorderThickness = new Thickness(0),
-                Foreground = btnBrush,
+                //Foreground = btnBrush,
             };
             deleteButton.Click += ConfirmDelete;
-            if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
-                deleteButton.Template = buttonTemplate;
+            deleteButton.Style = (Style)FindResource("DeleteStyle");
+            //if (Application.Current.Resources["CustomButtonTemplate"] is ControlTemplate buttonTemplate)
+            //    deleteButton.Template = buttonTemplate;
             Border border1 = new Border
             {
                 BorderThickness = new Thickness(.5, 0, .5, .5),
                 Child = deleteButton,
                 BorderBrush = prmBrush,
-                Background = _colorBrush,
+                //Background = _colorBrush,
             };
+            border1.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
             Grid.SetColumn(border1, i);
             grid.Children.Add(border1);
             Grid.SetRow(grid, 0);

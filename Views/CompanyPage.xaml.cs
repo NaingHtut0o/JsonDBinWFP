@@ -17,6 +17,7 @@ namespace SmartHealthTest.Views
         private JsonDatabase<CompanyMasterModel> _companyDatabase;
         public ObservableCollection<CompanyMasterModel> CompanyData;
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
+        private SolidColorBrush _altBrush;
         public CompanyPage()
         {
             InitializeComponent();
@@ -24,6 +25,13 @@ namespace SmartHealthTest.Views
             LoadData();
             dgCompany.ItemsSource = CompanyData;
             CheckIfNoData();
+
+            this.SizeChanged += (s, e) =>
+            {
+                dgCompany.MaxHeight = this.ActualHeight - 230; // 50% of window height
+                dgCompany.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+                dgCompany.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            };
         }
 
         private void CheckIfNoData()
@@ -45,6 +53,7 @@ namespace SmartHealthTest.Views
             CompanyData = new ObservableCollection<CompanyMasterModel>(_companyDatabase.GetAll());
             if (Application.Current.Resources["WindowBackground"] is SolidColorBrush brush)
                 _colorBrush = brush;
+            _altBrush = Application.Current.Resources["AlternateBrush"] as SolidColorBrush ?? new SolidColorBrush(Colors.MintCream);
         }
 
         private void Update(object sender, RoutedEventArgs e)
@@ -131,11 +140,11 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.Background = _colorBrush;
+                e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
             }
             else
             {
-                e.Row.Background = Brushes.MintCream;
+                e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
             }
         }
 

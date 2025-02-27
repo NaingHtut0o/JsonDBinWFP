@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
-        Title="スマート ヘルス" Height="450" Width="800"
+        Title="スマート ヘルス"
+        Height="450" Width="980"
         Background="{DynamicResource WindowBackground}">
     <Window.Resources>
         <Style TargetType="Button" x:Key="LinkButtonStyle">
@@ -19,7 +20,9 @@
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource ButtonBrush}"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -28,6 +31,7 @@
         <Style TargetType="Button" x:Key="ClickButtonStyle">
             <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
             <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -59,21 +63,35 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="160"/>
             </Grid.ColumnDefinitions>
             <Button Content="紐づけ処理" Click="NavigateBlank" Grid.Column="0" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="属性マスタ" Click="NavigateAttribute" Grid.Column="1" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="属性登録" Click="NavigateRegisterAttribute" Grid.Column="2" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="会社マスタ" Click="NavigateCompany" Grid.Column="3" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="会社ID連携" Click="NavigateCompanyLink" Grid.Column="4" Style="{DynamicResource LinkButtonStyle}"/>
-            <Button Content="健診マスタ" Click="NavigateBlank" Grid.Column="5" Style="{DynamicResource LinkButtonStyle}"/>
+            <Button Content="健診マスタ" Click="NavigateHealthCheck" Grid.Column="5" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="健診データ登録" Click="NavigateBlank" Grid.Column="6" Style="{DynamicResource LinkButtonStyle}"/>
             <TextBlock Text="操作者：上原太郎　さん" Grid.Column="7" HorizontalAlignment="Right" Foreground="Black"/>
             <Button Content="ログアウト" Click="NavigateBlank" Grid.Column="8" Style="{DynamicResource LinkButtonStyle}"/>
+            <ToggleButton x:Name="DarkModeToggle" Grid.Column="9" Content="☀️Light Mode" Checked="DarkModeToggle_Checked" Unchecked="DarkModeToggle_Unchecked" Width="150" Height="40" FontSize="16" Background="{DynamicResource WindowBackground}" Foreground="{DynamicResource DataGridBrush}" BorderThickness="0" Padding="5">
+                <ToggleButton.Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="20"  Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ToggleButton.Style>
+            </ToggleButton>
         </Grid>
 
         <!-- Frame for Page Navigation -->
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-            <Frame x:Name="MainFrame" Margin="0,0,0,0" NavigationUIVisibility="Hidden"/>
-        </ScrollViewer>
+        <Frame x:Name="MainFrame" Margin="0,0,0,0" NavigationUIVisibility="Hidden" Grid.Row="1"/>
     </Grid>
 </Window>

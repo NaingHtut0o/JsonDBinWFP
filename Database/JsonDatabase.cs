@@ -16,7 +16,11 @@ namespace SmartHealthTest.Database
 
         public List<T> GetAll()
         {
-            if(!File.Exists(_filePath)) return new List<T>();
+            if (!File.Exists(_filePath))
+            {
+                File.WriteAllText(_filePath, "[]");
+                return new List<T>();
+            }
 
             string json = File.ReadAllText(_filePath);
             return JsonConvert.DeserializeObject<List<T>>(json) ?? new List<T>();
