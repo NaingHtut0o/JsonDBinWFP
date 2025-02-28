@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Windows;
 using Newtonsoft.Json;
+using NLog;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Database
 {
     public class JsonDatabase<T>
     {
         private readonly string _filePath;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public JsonDatabase( string fileName )
         {
@@ -28,8 +32,17 @@ namespace SmartHealthTest.Database
 
         public void SaveAll(List<T> items)
         {
-            string json = JsonConvert.SerializeObject(items, Formatting.Indented);
-            File.WriteAllText(_filePath, json);
+            try
+            {
+                logger.Info(MessageClass.UpdateDataMsg);
+                string json = JsonConvert.SerializeObject(items, Formatting.Indented);
+                File.WriteAllText(_filePath, json);
+                MessageBox.Show(MessageClass.UpdateSucMsg, MessageClass.SuccessTitle);
+            }
+            catch(Exception ex)
+            {
+                logger.Error(MessageClass.UpdateDataErr, ex);
+            }
         }
     }
 }

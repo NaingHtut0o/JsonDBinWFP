@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using SmartHealthTest.Database;
 using SmartHealthTest.Models;
 using System.Windows.Media;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Views
 {
@@ -60,7 +61,7 @@ namespace SmartHealthTest.Views
         {
             if (searchID.Text == "" || newName.Text == "")
             {
-                MessageBoxResult result = MessageBox.Show("You have to fill all data", "Fill All Data", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show(MessageClass.UnfillDataMsg, MessageClass.UnfillDataTitle, MessageBoxButton.OK);
                 if (searchID.Text == "")
                     searchID.Focus();
                 else
@@ -122,7 +123,7 @@ namespace SmartHealthTest.Views
             var item = button?.Tag;
             CompanyMasterModel deleteAttributeModel = (CompanyMasterModel)item;
 
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + deleteAttributeModel.CompanyName, "Confirm Delete", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + deleteAttributeModel.CompanyName, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 List<CompanyMasterModel> CompanyMasterModels = _companyDatabase.GetAll();

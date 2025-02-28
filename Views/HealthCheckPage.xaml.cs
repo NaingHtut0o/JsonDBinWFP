@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using SmartHealthTest.Database;
 using SmartHealthTest.Models;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Views
 {
@@ -148,7 +149,7 @@ namespace SmartHealthTest.Views
             Button button = sender as Button;
             HealthCheckItemMasterModel delModel = button.Tag as HealthCheckItemMasterModel;
 
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + delModel.ItemName, "Confirm Delete", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + delModel.ItemName, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
                   Delete(delModel.ItemId);
         }
@@ -158,7 +159,7 @@ namespace SmartHealthTest.Views
             TextBoxData();
             if (_itemId == 0 || _itemName == string.Empty || _unit == String.Empty)
             {
-                MessageBoxResult result = MessageBox.Show("You have to fill all data", "Fill All Data", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show(MessageClass.UnfillDataMsg, MessageClass.UnfillDataTitle, MessageBoxButton.OK);
                 if (_itemId == 0)
                     searchID.Focus();
                 if (_itemName == string.Empty)

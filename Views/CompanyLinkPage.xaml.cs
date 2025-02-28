@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using SmartHealthTest.Database;
 using SmartHealthTest.Models;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Views
 {
@@ -95,7 +96,7 @@ namespace SmartHealthTest.Views
             UrbanOsLinkModel delLinkModel = allUrbanOsLinks.Where(r => r.Id == (int)id).FirstOrDefault();
 
 
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + delLinkModel.ExternalId, "Confirm Delete", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + delLinkModel.ExternalId, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 if (delLinkModel != null)
@@ -110,7 +111,7 @@ namespace SmartHealthTest.Views
         {
             if(searchID.Text == "" || newName.SelectedValue == null || linkID.Text == "")
             {
-                MessageBoxResult result = MessageBox.Show("You have to fill all data", "Fill All Data", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show(MessageClass.UnfillDataMsg, MessageClass.UnfillDataTitle, MessageBoxButton.OK);
                 if (searchID.Text == "")
                     searchID.Focus();
                 else if(newName.SelectedValue == null)

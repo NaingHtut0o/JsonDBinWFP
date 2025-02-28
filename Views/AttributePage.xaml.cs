@@ -10,6 +10,7 @@ using SmartHealthTest.Models;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Views
 {
@@ -62,7 +63,7 @@ namespace SmartHealthTest.Views
         {
             if (searchID.Text == "" || newName.Text == "")
             {
-                MessageBoxResult result = MessageBox.Show("You have to fill all data", "Fill All Data", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show(MessageClass.UnfillDataMsg, MessageClass.UnfillDataTitle, MessageBoxButton.OK);
                 if (searchID.Text == "")
                     searchID.Focus();
                 else
@@ -82,6 +83,7 @@ namespace SmartHealthTest.Views
                 attributeMasterModels.Add(newAttributeModel);
                 attributeMasterModels = attributeMasterModels.OrderBy(r => r.AttributeId).ToList();
                 _attributeDatabase.SaveAll(attributeMasterModels);
+                MessageBox.Show(MessageClass.UpdateSucMsg, MessageClass.SuccessTitle);
                 RefreshList();
             }
         }
@@ -124,7 +126,7 @@ namespace SmartHealthTest.Views
             var item = button?.Tag;
             AttributeMasterModel deleteAttributeModel = (AttributeMasterModel)item;
 
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + deleteAttributeModel.AttributeName, "Confirm Delete", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + deleteAttributeModel.AttributeName, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 List<AttributeMasterModel> attributeMasterModels = _attributeDatabase.GetAll();
@@ -132,6 +134,7 @@ namespace SmartHealthTest.Views
                 if (attModel != null)
                     attributeMasterModels.Remove(attModel);
                 _attributeDatabase.SaveAll(attributeMasterModels);
+                MessageBox.Show(MessageClass.DeleteSucMsg, MessageClass.SuccessTitle);
                 AttributeData.Remove(deleteAttributeModel);
             }
             dgAttributes.Items.Refresh();

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using SmartHealthTest.Database;
 using SmartHealthTest.Models;
+using SmartHealthTest.Utilities;
 
 namespace SmartHealthTest.Views
 {
@@ -304,7 +305,7 @@ namespace SmartHealthTest.Views
 
         private void ConfirmDelete(object sender, EventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Are you sure you want to delete " + currentOsId, "Confirm Delete", MessageBoxButton.YesNo);
+            MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + currentOsId, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
             {
                 List<UrbanOsAttributesModel> updateAttribute = _userAttributesDatabase.GetAll();
