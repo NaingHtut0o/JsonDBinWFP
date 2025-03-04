@@ -187,6 +187,7 @@ namespace SmartHealthTest
                 var _altBrush = Application.Current.Resources["AlternateBrushDark"];
                 var _clearBrush = Application.Current.Resources["ClearBrushDark"];
                 var _dgBrush = Application.Current.Resources["DataGridBrushDark"];
+                var _txtBrush = Application.Current.Resources["TextBrushDark"];
 
                 Application.Current.Resources["WindowBackground"] = _winBrush;
                 Application.Current.Resources["ButtonBrush"] = _btnBrush;
@@ -194,6 +195,7 @@ namespace SmartHealthTest
                 Application.Current.Resources["AlternateBrush"] = _altBrush;
                 Application.Current.Resources["ClearBrush"] = _clearBrush;
                 Application.Current.Resources["DataGridBrush"] = _dgBrush;
+                Application.Current.Resources["TextBrush"] = _txtBrush;
 
                 // Update UI
                 DarkModeToggle.Content = "🌙Dark Mode";
@@ -216,6 +218,7 @@ namespace SmartHealthTest
                 var _altBrush = Application.Current.Resources["AlternateBrushLight"];
                 var _clearBrush = Application.Current.Resources["ClearBrushLight"];
                 var _dgBrush = Application.Current.Resources["DataGridBrushLight"];
+                var _txtBrush = Application.Current.Resources["TextBrushLight"];
 
                 Application.Current.Resources["WindowBackground"] = _winBrush;
                 Application.Current.Resources["ButtonBrush"] = _btnBrush;
@@ -223,6 +226,7 @@ namespace SmartHealthTest
                 Application.Current.Resources["AlternateBrush"] = _altBrush;
                 Application.Current.Resources["ClearBrush"] = _clearBrush;
                 Application.Current.Resources["DataGridBrush"] = _dgBrush;
+                Application.Current.Resources["TextBrush"] = _txtBrush;
 
                 // Update UI
                 DarkModeToggle.Content = "☀️Light Mode";

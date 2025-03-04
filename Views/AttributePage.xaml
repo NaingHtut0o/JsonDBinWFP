@@ -46,7 +46,7 @@
 			</Grid>
 		</Grid>
 
-        <DataGrid Grid.Row="2" x:Name="dgAttributes" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="True" CanUserSortColumns="True" LoadingRow="dgAttributes_LoadingRow" RowHeaderWidth="0" ColumnHeaderHeight="50" RowHeight="40" FontSize="16" BorderThickness="0" VerticalGridLinesBrush="{DynamicResource PrimaryBrush}" HorizontalGridLinesBrush="{DynamicResource PrimaryBrush}">
+        <DataGrid Grid.Row="2" x:Name="dgAttributes" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserSortColumns="False"  RowHeaderWidth="0" ColumnHeaderHeight="50" RowHeight="40" FontSize="16" BorderThickness="0" VerticalGridLinesBrush="{DynamicResource PrimaryBrush}" HorizontalGridLinesBrush="{DynamicResource PrimaryBrush}" AlternatingRowBackground="{DynamicResource AlternateBrush}" RowBackground="{DynamicResource WindowBackground}">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
@@ -63,21 +63,23 @@
                     <Setter Property="BorderThickness" Value="0"/>
                     <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
                     <Setter Property="Foreground" Value="{DynamicResource DataGridBrush}"/>
+                    <!--<Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFocused, RelativeSource={RelativeSource Self}}" Value="True">
+                            <Setter Property="Background" Value="Black"/>
+                        </DataTrigger>
+                    </Style.Triggers>-->
                 </Style>
-                <Style TargetType="DataGridRow">
+                <!--<Style TargetType="DataGridRow">
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
-                </Style>
+                </Style>-->
             </DataGrid.Resources>
-            <!--<DataGrid.RowStyle>
-				<Style TargetType="DataGridRow">
-					<Style.Triggers>
-						<Trigger Property="IsMouseOver" Value="True">
-							<Setter Property="Background" Value="LightBlue"/>
-						</Trigger>
-					</Style.Triggers>
-				</Style>
-			</DataGrid.RowStyle>-->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="GotFocus" Handler="DataGrid_GotFocus"/>
+                    <EventSetter Event="LostFocus" Handler="DataGrid_LostFocus"/>
+                </Style>
+            </DataGrid.RowStyle>
 
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header=" ID" Width="2*">

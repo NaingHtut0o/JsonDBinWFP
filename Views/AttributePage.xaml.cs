@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using SmartHealthTest.Utilities;
+using NLog;
 
 namespace SmartHealthTest.Views
 {
@@ -20,6 +21,8 @@ namespace SmartHealthTest.Views
         public ObservableCollection<AttributeMasterModel> AttributeData;
         private SolidColorBrush _colorBrush = new SolidColorBrush(Colors.LightYellow);
         private SolidColorBrush _altBrush = new SolidColorBrush(Colors.MintCream);
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private SolidColorBrush _rowColor = new SolidColorBrush();
         public AttributePage()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace SmartHealthTest.Views
             };
         }
 
-    private void CheckIfNoData()
+        private void CheckIfNoData()
         {
             if (dgAttributes.Items.Count == 0)
             {
@@ -141,17 +144,17 @@ namespace SmartHealthTest.Views
             CheckIfNoData();
         }
 
-        private void dgAttributes_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            if (e.Row.GetIndex() % 2 == 0)
-            {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
-            }
-            else
-            {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
-            }
-        }
+        //private void dgAttributes_LoadingRow(object sender, DataGridRowEventArgs e)
+        //{
+        //    if (e.Row.GetIndex() % 2 == 0)
+        //    {
+        //        e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+        //    }
+        //    else
+        //    {
+        //        e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
+        //    }
+        //}
 
         public void RefreshList()
         {
@@ -162,6 +165,60 @@ namespace SmartHealthTest.Views
                 AttributeData.Add(item);
             }
             dgAttributes.Items.Refresh();
+        }
+
+        public void DataGrid_GotFocus(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            if (row != null)
+            {
+                _rowColor = (SolidColorBrush)row.Background;
+                for (int i = 0; i < dgAttributes.Columns.Count; i++)
+                {
+                    // Get the cell in the row for the current column
+                    DataGridCell cell = GetCell(dgAttributes, row, i);
+
+                    if (cell != null)
+                    {
+                        // Apply your change to the cell, e.g., change background color
+                        cell.Background = _rowColor;  // Example: Change the background color
+                    }
+                }
+            }
+        }
+
+        public void DataGrid_LostFocus(object sender, RoutedEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            if (row != null)
+            {
+                for (int i = 0; i < dgAttributes.Columns.Count; i++)
+                {
+                    // Get the cell in the row for the current column
+                    DataGridCell cell = GetCell(dgAttributes, row, i);
+
+                    if (cell != null)
+                    {
+                        // Apply your change to the cell, e.g., change background color
+                        cell.Background = _rowColor;  // Example: Change the background color
+                    }
+                }
+                row.Background = _rowColor;
+            }
+            _rowColor = new SolidColorBrush();
+            RefreshList();
+        }
+
+        private DataGridCell GetCell(DataGrid dataGrid, DataGridRow row, int columnIndex)
+        {
+            DataGridCell cell = null;
+            // Get the cell content, and then the cell itself
+            var cellContent = dataGrid.Columns[columnIndex].GetCellContent(row);
+            if (cellContent != null)
+            {
+                cell = cellContent.Parent as DataGridCell;
+            }
+            return cell;
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
         Title="スマート ヘルス"
+        WindowState="Maximized" WindowStyle="None"
         Height="450" Width="980"
         Background="{DynamicResource WindowBackground}">
     <Window.Resources>
@@ -30,7 +31,7 @@
         </Style>
         <Style TargetType="Button" x:Key="ClickButtonStyle">
             <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
-            <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="BorderBrush" Value="{DynamicResource PrimaryBrush}"/>
             <Setter Property="Template">

@@ -37,7 +37,6 @@ namespace SmartHealthTest.Database
                 logger.Info(MessageClass.UpdateDataMsg);
                 string json = JsonConvert.SerializeObject(items, Formatting.Indented);
                 File.WriteAllText(_filePath, json);
-                MessageBox.Show(MessageClass.UpdateSucMsg, MessageClass.SuccessTitle);
             }
             catch(Exception ex)
             {
