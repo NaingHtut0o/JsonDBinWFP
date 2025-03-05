@@ -205,7 +205,7 @@ namespace SmartHealthTest.Views
                 FontWeight = FontWeights.Bold,
                 //Foreground = new SolidColorBrush(Colors.Red),
             };
-            textBlock.SetResourceReference(Button.ForegroundProperty, "ClearBrush");
+            textBlock.SetResourceReference(TextBlock.ForegroundProperty, "ClearBrush");
             Grid.SetColumn(textBlock, 0);
             dgCompanyLink.Children.Add(textBlock);
         }
@@ -268,9 +268,9 @@ namespace SmartHealthTest.Views
                 grid.Children.Add(border4);
                 
                 if(i%2 ==0)
-                    grid.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+                    grid.SetResourceReference(DataGrid.BackgroundProperty, "WindowBackground");
                 else
-                    grid.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
+                    grid.SetResourceReference(DataGrid.BackgroundProperty, "AlternateBrush");
                 Grid.SetRow(grid, i);
                 dgCompanyLink.Children.Add(grid);
                 i++;
@@ -285,7 +285,7 @@ namespace SmartHealthTest.Views
                 //BorderBrush = _prmBrush,
                 Child = child,
             };
-            border.SetResourceReference(Button.BorderBrushProperty, "PrimaryBrush");
+            border.SetResourceReference(Border.BorderBrushProperty, "PrimaryBrush");
             return border;
         }
 
@@ -299,7 +299,7 @@ namespace SmartHealthTest.Views
                 FontSize = 16,
                 //Foreground = _dataGridBrush,
             };
-            textBlock.SetResourceReference(Button.ForegroundProperty, "DataGridBrush");
+            textBlock.SetResourceReference(TextBlock.ForegroundProperty, "DataGridBrush");
             return textBlock;
         }
 

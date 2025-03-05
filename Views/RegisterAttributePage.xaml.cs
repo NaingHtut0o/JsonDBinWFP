@@ -91,7 +91,7 @@ namespace SmartHealthTest.Views
                     Width = 75,
                     //Foreground = prmBrush,
                 };
-                textBlock.SetResourceReference(Button.ForegroundProperty, "PrimaryBrush");
+                textBlock.SetResourceReference(TextBlock.ForegroundProperty, "PrimaryBrush");
                 Grid.SetColumn(textBlock, 0);
                 grid.Children.Add(textBlock);
                 grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
@@ -105,7 +105,7 @@ namespace SmartHealthTest.Views
                     //Background = _altBrush,
                     //Text = attribute.AttributeName,
                 };
-                textBox.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
+                textBox.SetResourceReference(TextBox.BackgroundProperty, "AlternateBrush");
                 textBoxes.Add(attribute.AttributeId, textBox);
                 Grid.SetColumn(textBox, 1);
                 grid.Children.Add(textBox);
@@ -173,7 +173,7 @@ namespace SmartHealthTest.Views
                 FontWeight = FontWeights.Bold,
                 //Foreground = new SolidColorBrush(Colors.Red),
             };
-            textBlock.SetResourceReference(Button.ForegroundProperty, "ClearBrush");
+            textBlock.SetResourceReference(TextBlock.ForegroundProperty, "ClearBrush");
             Grid.SetColumn(textBlock, 0);
             _bodyGrid.Children.Add(textBlock);
         }
@@ -227,7 +227,7 @@ namespace SmartHealthTest.Views
                         Foreground = _dataGridBrush,
                     }
                 };
-                border.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+                border.SetResourceReference(Border.BackgroundProperty, "WindowBackground");
                 Grid.SetColumn(border, i);
                 grid.Children.Add(border);
                 i++;
@@ -257,7 +257,7 @@ namespace SmartHealthTest.Views
                 BorderBrush = prmBrush,
                 //Background = _colorBrush,
             };
-            border1.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+            border1.SetResourceReference(Border.BackgroundProperty, "WindowBackground");
             Grid.SetColumn(border1, i);
             grid.Children.Add(border1);
             Grid.SetRow(grid, 0);

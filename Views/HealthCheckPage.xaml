@@ -15,7 +15,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="健診マスタ" FontSize="22" FontWeight="Bold" Margin="10" Foreground="{DynamicResource PrimaryBrush}"/>
+        <TextBlock Grid.Row="0" Text="健診マスタ" FontSize="22" FontWeight="Bold" Margin="10" Foreground="{DynamicResource DataGridBrush}"/>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -31,10 +31,10 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="健診項目ID" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource DataGridBrush}" TextAlignment="Right"/>
                 
-                <TextBlock Grid.Column="0" Text="健診項目ID" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource PrimaryBrush}"/>
-                
-                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="searchID" Margin="0 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
+                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="searchID" Margin="5 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
                 
                 <Button Grid.Column="2" Width="60" Content="検索" FontSize="16" Margin="0 0 5 0" Click="Search"/>
                 
@@ -47,9 +47,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="健診項目" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource PrimaryBrush}"/>
+                <TextBlock Grid.Column="0" Text="健診項目" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource DataGridBrush}" TextAlignment="Right"/>
 
-                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="newName" Margin="0 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
+                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="newName" Margin="5 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
             </Grid>
 
             <Grid Grid.Row="2" Margin="80, 10, 50, 0" Height="35" VerticalAlignment="Center">
@@ -58,13 +58,13 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="単位" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource PrimaryBrush}"/>
+                <TextBlock Grid.Column="0" Text="単位" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Width="85" Foreground="{DynamicResource DataGridBrush}" TextAlignment="Right"/>
 
-                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="unit" Margin="0 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
+                <TextBox Grid.Column="1" Width="420" FontSize="16" VerticalContentAlignment="Center" x:Name="unit" Margin="5 0 5 0" Foreground="{DynamicResource DataGridBrush}" Background="{DynamicResource AlternateBrush}"/>
             </Grid>
         </Grid>
 
-        <DataGrid Grid.Row="2" x:Name="dgHealthCheck" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False" CanUserDeleteRows="True" CanUserSortColumns="True" HeadersVisibility="Column" ColumnHeaderHeight="50" RowHeight="40" LoadingRow="dgHealthCheck_LoadingRow" FontSize="16" BorderThickness="1 0 0 0" BorderBrush="{DynamicResource ButtonBrush}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" VerticalGridLinesBrush="{DynamicResource ButtonBrush}" HorizontalGridLinesBrush="{DynamicResource ButtonBrush}" CellEditEnding="myDataGrid_CellEditEnding">
+        <DataGrid Grid.Row="2" x:Name="dgHealthCheck" Margin="80, 10, 50, 0" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False" CanUserDeleteRows="True" CanUserSortColumns="True" HeadersVisibility="Column" ColumnHeaderHeight="50" RowHeight="40" FontSize="16" BorderThickness="1 0 0 0" BorderBrush="{DynamicResource ButtonBrush}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" VerticalGridLinesBrush="{DynamicResource ButtonBrush}" HorizontalGridLinesBrush="{DynamicResource ButtonBrush}" CellEditEnding="myDataGrid_CellEditEnding" RowBackground="{DynamicResource WindowBackground}" AlternatingRowBackground="{DynamicResource AlternateBrush}">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
                     <Setter Property="Background" Value="{DynamicResource PrimaryBrush}"/>
@@ -73,6 +73,16 @@
                     <Setter Property="FontWeight" Value="Bold"/>
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridColumnHeader">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
                 </Style>
                 <Style TargetType="DataGridCell">
                     <Setter Property="BorderBrush" Value="Transparent"/>
@@ -97,13 +107,11 @@
                     </DataGridTextColumn.ElementStyle>
                     
                     <DataGridTextColumn.EditingElementStyle>
-                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridBoxColumnElementStyle}">
-                            <Setter Property="HorizontalAlignment" Value="Right"/>
-                        </Style>
+                        <Style TargetType="TextBox" BasedOn="{StaticResource DataGridBoxColumnElementStyle}"/>
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header=" 健診項目" Width="4*" Binding="{Binding ItemName, Mode=TwoWay}">
+                <DataGridTextColumn Header="健診項目" Width="4*" Binding="{Binding ItemName, Mode=TwoWay}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource DataGridTextColumnElementStyle}"/>
                     </DataGridTextColumn.ElementStyle>
@@ -113,7 +121,7 @@
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Header=" 単位" Width="2*" Binding="{Binding Unit, Mode=TwoWay}">
+                <DataGridTextColumn Header="単位" Width="2*" Binding="{Binding Unit, Mode=TwoWay}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource DataGridTextColumnElementStyle}"/>
                     </DataGridTextColumn.ElementStyle>
@@ -123,10 +131,17 @@
                     </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
 
-                <DataGridTemplateColumn Header=" 活動" Width="1*">
+                <DataGridTemplateColumn Header="活動" Width="1*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="ConfirmDelete" Tag="{Binding}" BorderThickness="0" Width="20" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Style="{DynamicResource DeleteStyle}"/>
+                            <Grid HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="1" Click="ConfirmDelete" Tag="{Binding}" BorderThickness="0" Width="20" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Style="{DynamicResource DeleteStyle}" Margin="8 0"/>
+                                <Button Grid.Column="0" Click="CopyContent" Tag="{Binding}" BorderThickness="0" Width="20" Content="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Style="{DynamicResource CopyStyle}" Margin="8 0"/>
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -147,19 +162,19 @@
                 </Grid.ColumnDefinitions>
 
                 <Border Grid.Column="0">
-                    <TextBlock Text=" 健診項目ID " HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text=" 健診項目ID " HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
                 </Border>
 
                 <Border Grid.Column="1">
-                    <TextBlock Text=" 健診項目" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="健診項目" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
                 </Border>
 
                 <Border Grid.Column="2">
-                    <TextBlock Text=" 単位" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="単位" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
                 </Border>
 
                 <Border Grid.Column="3">
-                    <TextBlock Text=" 活動" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
+                    <TextBlock Text="活動" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="16" FontWeight="Bold"/>
                 </Border>
             </Grid>
             <Grid Grid.Row="1">
@@ -170,12 +185,12 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10">
             <StackPanel.Resources>
                 <Style TargetType="Button" x:Key="PaginationStyle" BasedOn="{StaticResource {x:Type Button}}">
-                    <Setter Property="Width" Value="50"/>
+                    <Setter Property="Width" Value="40"/>
                     <Setter Property="Height" Value="30"/>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnFirst" Content="First" Click="BtnFirst_Click" Margin="5" Style="{DynamicResource PaginationStyle}"/>
-            <Button x:Name="btnPrevious" Content="Prev" Click="BtnPrevious_Click" Margin="5" Style="{DynamicResource PaginationStyle}"/>
+            <Button x:Name="btnFirst" Content="&#xE892;" FontFamily="Segoe MDL2 Assets" Click="BtnFirst_Click" Margin="5" Style="{DynamicResource PaginationStyle}"/>
+            <Button x:Name="btnPrevious" Content="&#xE76B;" FontFamily="Segoe MDL2 Assets" Click="BtnPrevious_Click" Margin="5" Style="{DynamicResource PaginationStyle}"/>
             <ComboBox x:Name="pageSize" Width="50"  Height="30" FontSize="16" Foreground="#4d4d4d" VerticalContentAlignment="Center" IsEditable="True" IsReadOnly="True" Margin="5">
                 <!--<ComboBox.Template>
                     <ControlTemplate TargetType="ComboBox">
@@ -190,8 +205,8 @@
                 <ComboBoxItem Content="10"/>
                 <ComboBoxItem Content="15"/>
             </ComboBox>
-            <Button x:Name="btnNext" Content="Next" Click="BtnNext_Click" Margin="5" Style="{DynamicResource PaginationStyle}" />
-            <Button x:Name="btnLast" Content="Last" Click="BtnLast_Click" Margin="5" Style="{DynamicResource PaginationStyle}" />
+            <Button x:Name="btnNext" Content="&#xE76C;" FontFamily="Segoe MDL2 Assets" Click="BtnNext_Click" Margin="5" Style="{DynamicResource PaginationStyle}" />
+            <Button x:Name="btnLast" Content="&#xE893;" FontFamily="Segoe MDL2 Assets" Click="BtnLast_Click" Margin="5" Style="{DynamicResource PaginationStyle}" />
             <TextBlock x:Name="txtPage" VerticalAlignment="Center" Margin="5" />
         </StackPanel>
         

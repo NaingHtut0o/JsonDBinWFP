@@ -127,6 +127,14 @@ namespace SmartHealthTest.Views
             TextBoxData();
         }
 
+        private void AssignTextBoxs(HealthCheckItemMasterModel copyModel)
+        { 
+            searchID.Text = copyModel.ItemId.ToString();
+            newName.Text = copyModel.ItemName;
+            unit.Text = copyModel.Unit;
+            TextBoxData();
+        }
+
         private void ClearPagination()
         {
             _currentPage = 0;
@@ -150,11 +158,11 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+                e.Row.SetResourceReference(DataGrid.BackgroundProperty, "WindowBackground");
             }
             else
             {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
+                e.Row.SetResourceReference(DataGrid.BackgroundProperty, "AlternateBrush");
             }
         }
 
@@ -195,6 +203,14 @@ namespace SmartHealthTest.Views
             MessageBoxResult result = MessageBox.Show(MessageClass.ConfirmDeleteMsg + delModel.ItemName, MessageClass.ConfirmDeleteTitle, MessageBoxButton.YesNo);
             if (result == MessageBoxResult.Yes)
                   Delete(delModel.ItemId);
+        }
+
+        private void CopyContent(object sender, RoutedEventArgs e)
+        {
+            Button btnCopy = sender as Button;
+            HealthCheckItemMasterModel cpyModel = btnCopy.Tag as HealthCheckItemMasterModel;
+
+            AssignTextBoxs(cpyModel);
         }
 
         private void Update(object sender, RoutedEventArgs e)

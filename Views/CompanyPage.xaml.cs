@@ -141,11 +141,11 @@ namespace SmartHealthTest.Views
         {
             if (e.Row.GetIndex() % 2 == 0)
             {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "WindowBackground");
+                e.Row.SetResourceReference(DataGrid.BackgroundProperty, "WindowBackground");
             }
             else
             {
-                e.Row.SetResourceReference(Button.BackgroundProperty, "AlternateBrush");
+                e.Row.SetResourceReference(DataGrid.BackgroundProperty, "AlternateBrush");
             }
         }
 

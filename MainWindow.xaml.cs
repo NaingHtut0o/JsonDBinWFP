@@ -119,6 +119,23 @@ namespace SmartHealthTest
             }
         }
 
+        private void NavigateHealthCheckRegister(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                logger.Info(MessageClass.ButtonStyleChangeMsg);
+                ResetAllButtonStyle();
+                var button = sender as Button;
+                button.Style = (Style)FindResource("ClickButtonStyle");
+                logger.Info(MessageClass.NavigatePageMsg);
+                MainFrame.Navigate(new HealthCheckRegisterPage());
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, MessageClass.NavigatePageErr);
+            }
+        }
+
         private void NavigateBlank(object sender, RoutedEventArgs e)
         {
             try

@@ -72,10 +72,10 @@
             <Button Content="会社マスタ" Click="NavigateCompany" Grid.Column="3" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="会社ID連携" Click="NavigateCompanyLink" Grid.Column="4" Style="{DynamicResource LinkButtonStyle}"/>
             <Button Content="健診マスタ" Click="NavigateHealthCheck" Grid.Column="5" Style="{DynamicResource LinkButtonStyle}"/>
-            <Button Content="健診データ登録" Click="NavigateBlank" Grid.Column="6" Style="{DynamicResource LinkButtonStyle}"/>
+            <Button Content="健診データ登録" Click="NavigateHealthCheckRegister" Grid.Column="6" Style="{DynamicResource LinkButtonStyle}"/>
             <TextBlock Text="操作者：上原太郎　さん" Grid.Column="7" HorizontalAlignment="Right" Foreground="{DynamicResource DataGridBrush}"/>
             <Button Content="ログアウト" Click="NavigateBlank" Grid.Column="8" Style="{DynamicResource LinkButtonStyle}"/>
-            <ToggleButton x:Name="DarkModeToggle" Grid.Column="9" Content="☀️Light Mode" Checked="DarkModeToggle_Checked" Unchecked="DarkModeToggle_Unchecked" Width="150" Height="40" FontSize="16" Background="{DynamicResource WindowBackground}" Foreground="{DynamicResource DataGridBrush}" BorderThickness="0" Padding="5">
+            <ToggleButton x:Name="DarkModeToggle" Grid.Column="9" Content="🌙Dark Mode" Checked="DarkModeToggle_Unchecked" Unchecked="DarkModeToggle_Checked" Width="150" Height="40" FontSize="16" Background="{DynamicResource WindowBackground}" Foreground="{DynamicResource DataGridBrush}" BorderThickness="0" Padding="5">
                 <ToggleButton.Style>
                     <Style TargetType="ToggleButton">
                         <Setter Property="Template">

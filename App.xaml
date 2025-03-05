@@ -4,13 +4,14 @@
              xmlns:local="clr-namespace:SmartHealthTest"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <SolidColorBrush x:Key="WindowBackground" Color="#ffffff"/>
-        <SolidColorBrush x:Key="ButtonBrush" Color="#ffb12b"/>
-        <SolidColorBrush x:Key="PrimaryBrush" Color="#eaa42c"/>
-        <SolidColorBrush x:Key="AlternateBrush" Color="#fff2d9"/>
-        <SolidColorBrush x:Key="TextBrush" Color="#a8751e"/>
+        <SolidColorBrush x:Key="WindowBackground" Color="#4d4d4d"/>
+        <SolidColorBrush x:Key="ButtonBrush" Color="#000000"/>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#021011"/>
+        <SolidColorBrush x:Key="AlternateBrush" Color="#3c3c3c"/>
+        <SolidColorBrush x:Key="TextBrush" Color="#FFFFDC"/>
         <SolidColorBrush x:Key="ClearBrush" Color="#f2684f"/>
-        <SolidColorBrush x:Key="DataGridBrush" Color="#4d4d4d"/>
+        <SolidColorBrush x:Key="CopyBrush" Color="#31D5FF"/>
+        <SolidColorBrush x:Key="DataGridBrush" Color="#e0e2e2"/>
         <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent" />
         <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="Transparent" />
         <SolidColorBrush x:Key="{x:Static SystemColors.ControlLightBrushKey}" Color="Transparent" />
@@ -111,6 +112,30 @@
             </Setter>
         </Style>
 
+        <Style TargetType="Button" x:Key="CopyStyle">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{DynamicResource CopyBrush}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect Color="#31D5FF" Direction="320" BlurRadius="10" ShadowDepth="2"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -136,8 +161,9 @@
 
         <Style TargetType="TextBox" x:Key="DataGridBoxColumnElementStyle">
             <Setter Property="Padding" Value="3"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{DynamicResource DataGridBrush}"/>
         </Style>
