@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:SmartHealthTest"
         mc:Ignorable="d"
         Title="Blank" Height="450" Width="800">
-    <Grid>
-        <TextBlock Text="無" FontSize="150" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBrush}"/>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="150" Foreground="{DynamicResource PrimaryBrush}" Margin="-122,-28,122,0" VerticalAlignment="Top"/>
+        <TextBlock Text="&#xE713;" FontFamily="Segoe MDL2 Assets" FontSize="100" Foreground="{DynamicResource PrimaryBrush}" Margin="53,55,41,0" VerticalAlignment="Top" >
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="58.514"/>
+                    <TranslateTransform X="1.421" Y="1.468"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Text="工事中" FontSize="100" Foreground="{DynamicResource PrimaryBrush}" Margin="97,-7,-97,0" VerticalAlignment="Top" FontWeight="Bold"/>
     </Grid>
 </Page>
